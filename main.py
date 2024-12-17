@@ -52,6 +52,7 @@ while True:
             sleep(tempo)
 
     elif int(opcao) ==2:
+        print("XESUIX")
         pass
     elif int(opcao) == 3:
         pass
