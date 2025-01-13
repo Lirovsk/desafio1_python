@@ -30,7 +30,7 @@ while True:
             if valor_saque != 'sair' and float(valor_saque)>=0:
                 if float(valor_saque) <= LMT_S_OP and float(valor_saque) <= valor_conta:
                     valor_conta = valor_conta - float(valor_saque)
-                    extrato.append(['saque', str(valor_saque)])
+                    extrato.append(['saque', float(valor_saque)])
                     lmt_usado += 1
                     sleep(tempo)
                     print("operação concluída")
@@ -61,7 +61,7 @@ while True:
         valor_deposito = input(MSG_DEPOSITO)
         if float(valor_deposito) > 0:
             valor_conta = valor_conta + float(valor_deposito)
-            extrato.append(['deposito', str(valor_deposito)])
+            extrato.append(['deposito', float(valor_deposito)])
             sleep(tempo)
             print("operação concluída")
             sleep(tempo)
@@ -81,8 +81,8 @@ while True:
             system('cls')
             print("Extrato completo:\n\n")
             for i in range(len(extrato)):
-                print("Operação:", extrato[i][0], "| Valor:", extrato[i][1], "\n\n")
-            print("Saldo atual: ", valor_conta)
+                print(f"Operação: {extrato[i][0]} | Valor: R${extrato[i][1]:.2f}\n\n")
+            print(f"Saldo atual: R${valor_conta:.2f}")
             input("Pressione uma tecla para fechar a exibição do estrato")
             system('cls')
 
