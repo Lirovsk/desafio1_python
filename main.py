@@ -1,6 +1,6 @@
 from time import *
-
-menu = '''
+from os import *
+MENU = '''
 Seja Bem vindo ao novo sistema do banco!!
 Selecione as opções abaixo conforme o que deseja utilizar hoje:
         Saque[1]
@@ -8,9 +8,11 @@ Selecione as opções abaixo conforme o que deseja utilizar hoje:
         Extrato[3]
         Sair do sistema[4]
 '''
-msg_saque = '''Digite o valor desajado para o saque. 
+MSG_SAQUE = '''Digite o valor desajado para o saque. 
 Caso queira retornar ao menu sem realizar o saque, digite 'sair'.
 '''
+MSG_DEPOSITO = """Digite o valor desejado para o depósito.
+"""
 
 LMT_S_D = 3
 LMT_S_OP = 500
@@ -20,10 +22,10 @@ lmt_usado = 0
 tempo = 0.5
 
 while True:
-    opcao = input(menu)
+    opcao = input(MENU)
     if int(opcao) == 1:
         if lmt_usado < LMT_S_D:    
-            valor_saque = input(msg_saque)
+            valor_saque = input(MSG_SAQUE)
             
             if valor_saque != 'sair' and float(valor_saque)>=0:
                 if float(valor_saque) <= LMT_S_OP and float(valor_saque) <= valor_conta:
@@ -34,17 +36,21 @@ while True:
                     print("operação concluída")
                     sleep(tempo)                    
 
-                elif float(valor_saque) > 500:
+                elif float(valor_saque) > LMT_S_OP:
                     sleep(tempo)
                     print("\n")
                     print("O valor inserido é maior que o permitido para essa operação")
                     sleep(tempo)
                     continue
-
+                
                 else :
                     continue
+            elif valor_saque == 'sair':
+                continue
             else:
-                print("valor ")
+                sleep(tempo)
+                print("Valor inválido")
+                sleep(tempo)
 
         else:
             sleep(tempo)
@@ -52,13 +58,38 @@ while True:
             sleep(tempo)
 
     elif int(opcao) ==2:
-        pass
+        valor_deposito = input(MSG_DEPOSITO)
+        if float(valor_deposito) > 0:
+            valor_conta = valor_conta + float(valor_deposito)
+            extrato.append(['deposito', str(valor_deposito)])
+            sleep(tempo)
+            print("operação concluída")
+            sleep(tempo)
+        else:
+            sleep(tempo)
+            print("Valor inválido")
+            sleep(tempo)
+
     elif int(opcao) == 3:
-        pass
+        if extrato == []:
+            system('cls')
+            sleep(tempo)
+            print("Extrato vazio")
+            system("cls")
+            sleep(tempo)
+        else:    
+            system('cls')
+            print("Extrato completo:\n\n")
+            for i in range(len(extrato)):
+                print("Operação:", extrato[i][0], "| Valor:", extrato[i][1], "\n\n")
+            print("Saldo atual: ", valor_conta)
+            input("Pressione uma tecla para fechar a exibição do estrato")
+            system('cls')
+
     elif int(opcao) == 4:
         break
     else:
-        print("Opção inválida, selecione outra opção do menu.")
+        print("Opção inválida, selecione outra opção do MENU.")
         print("Caso queira sair, pressione 4.")
     sleep(tempo)
     
