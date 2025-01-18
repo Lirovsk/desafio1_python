@@ -68,8 +68,18 @@ class client:
         return
     
 class bank:
-    def __init__(self, cpf):
+    def __init__(self, cpf, lista_contas):
+        #tranformar isso em um dicionário
         self.cpf = cpf
         self.AGENCIA = '0001'
-        self.n_conta = ''
-    
+        self.n_conta = self.criar_n_conta(self, lista_contas)
+        self.saldo = 1500
+        self.extrato = []
+        self.lmt_d = 0
+
+    def criar_n_conta(self, lista_contas):
+        if len(lista_contas) == 0:
+            self.n_conta = 1
+        else:
+            self.n_conta = lista_contas[-1].n_conta + 1
+        return
