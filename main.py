@@ -27,7 +27,7 @@ while keep:
     else:
         continue
     resp2 = input("Deseja adicionar uma nova conta para o cliente?")
-    #tornar isso uma função para despoluir o código
+    #Gtornar isso uma função para despoluir o código
     if resp2 == 'sim':
         cpf = input("Digite o número do cpf do cliente que deseja adicionar a conta")
         conta = bank(cpf, lista_contas)
