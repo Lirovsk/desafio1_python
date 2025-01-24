@@ -35,8 +35,8 @@ while keep:
         print("Conta adicionada com sucesso!")
     print("para entrar emum conta digite primeiro seu cpf:")
     cpf = str(input())
-    for i in lista_contas:
-        if lista_clientes[i]['cpf'] == cpf:
-            print(lista_clientes[i]['contas'])
+    for i in range(len(lista_contas)):
+        if lista_clientes[i].dados['cpf'] == cpf:
+            print(lista_clientes[i].dados['contas'])
 
             break
