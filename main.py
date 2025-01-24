@@ -1,5 +1,6 @@
 from time import *
 from os import *
+from functions import *
 MENU = '''
 Seja Bem vindo ao novo sistema do banco!!
 Selecione as opções abaixo conforme o que deseja utilizar hoje:
@@ -20,7 +21,6 @@ while keep:
     print("deseja adicionar um novo cliente?")
     resp = input()
     if resp == 'sim':
-        from functions import *
         cliente = client()
         lista_clientes.append(cliente)
         print("Cliente adicionado com sucesso!")
