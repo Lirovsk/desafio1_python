@@ -42,10 +42,10 @@ class client:
             'endereço': '',
             'contas': []
         }
-        self.criar_nome(self)
-        self.criar_data_nasc(self)
-        self.criar_cpf(self)
-        self.criar_endereco(self)
+        self.criar_nome()
+        self.criar_data_nasc()
+        self.criar_cpf()
+        self.criar_endereco()
 
     def criar_nome(self):
         nome = input("Digite o nome do cliente: ")
