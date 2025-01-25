@@ -129,7 +129,7 @@ class adding:
         n_conta = conta.dados['n_conta']
         serc = search()
         cliente = serc.search_client(cpf, lista_clientes)
-        if cliente == None:
+        if cliente != None:
             cliente.dados['contas'].append(n_conta)
         print("Conta adicionada com sucesso!")
         return
