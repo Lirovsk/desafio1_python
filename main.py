@@ -14,10 +14,12 @@ Caso queira retornar ao menu sem realizar o saque, digite 'sair'.
 '''
 MSG_DEPOSITO = """Digite o valor desejado para o depósito.
 """
+lista_contas = []
+lista_clientes = []
 keep = True
 while keep:
-    lista_contas = []
-    lista_clientes = []
+    #lista_contas = []
+    #lista_clientes = []
     print("deseja adicionar um novo cliente?")
     resp = input()
     if resp == 'sim':

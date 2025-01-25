@@ -84,5 +84,5 @@ class bank:
         if len(lista_contas) == 0:
             self.n_conta = 1
         else:
-            self.n_conta = lista_contas[-1]['n_conta'] + 1
+            self.n_conta = lista_contas[-1].dados['n_conta'] + 1
         return self.n_conta
