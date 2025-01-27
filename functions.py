@@ -36,10 +36,10 @@ class bank_actions:
 class client:
     def __init__(self):
         self.dados={
-            'nome': '',
+            'Nome': '',
             'data_nasc': '',
-            'cpf': '',
-            'endereço': '',
+            'CPF': '',
+            'Endereço': '',
             'contas': []
         }
         self.criar_nome()
@@ -49,7 +49,7 @@ class client:
 
     def criar_nome(self):
         nome = input("Digite o nome do cliente: ")
-        self.dados['nome'] = nome
+        self.dados['Nome'] = nome
         return
     
     def criar_data_nasc(self):
@@ -59,21 +59,22 @@ class client:
     
     def criar_cpf(self):
         cpf = input("Digite o CPF do cliente: ")
-        self.dados['cpf'] = cpf
+        self.dados['CPF'] = cpf
         return
     
     def criar_endereco(self):
         endereco = input("Digite o endereço do cliente: ")
-        self.dados['endereço'] = endereco
+        self.dados['Endereço'] = endereco
         return
       
       
 class bank:
     def __init__(self, cpf, lista_contas):
+        N_contas = self.criar_n_conta(lista_contas)
         self.dados = {
-            'cpf': cpf,
-            'AGENCIA': '0001',
-            'n_conta': self.criar_n_conta(lista_contas),
+            'CPF': cpf,
+            'Agencia': '0001',
+            'n_conta': N_contas,
             'saldo': 1500,
             'extrato': [],
             'lmt_d': 0
@@ -110,7 +111,7 @@ class search:
                 print("Conta não encontrada")
                 return
 
-class adding:
+class process:
     def add_cliente(self, lista_clientes):
         #add a new client to the list of clients
         answer = input("Deseja adicionar um novo cliente?\n")
@@ -133,3 +134,38 @@ class adding:
             cliente.dados['contas'].append(n_conta)
         print("Conta adicionada com sucesso!")
         return
+        
+    def get_key(self, dict, index, retunr_option = None):
+        if retunr_option == None:
+            keys = list(dict.dados.keys())
+            if 0 <= index < len(keys):
+                return keys[index]
+            else:
+                return None
+        else:
+            if retunr_option == 0:
+                keys = list(dict.dados.keys())
+                return len(keys)
+            if retunr_option == 1:
+                keys = list(dict.dados.keys())
+                return keys
+    
+    def print_data(self, objt):
+        
+        key_list = self.get_key(objt, 0, 1)
+        zero_key = self.get_key(objt, 0)
+        if zero_key == "CPF":
+            for i in range(self.get_key(objt, 0, 0)):
+                if (i>=0) and (i<3):
+                    if i == 2:
+                        print("Número da conta: ", objt.dados['n_conta'])
+                    else:
+                        print(f"{key_list[i]}: ", objt.dados[self.get_key(objt, i)])
+            return
+        if zero_key == "Nome":
+            for i in range(self.get_key(objt, 0, 0)):
+                if i != 4 and i != 1:
+                    print(f"{key_list[i]}: ", objt.dados[self.get_key(objt, i)])
+                if i == 1:
+                    print("Data de nascimento:", objt.dados[self.get_key(objt, i)])
+            return
