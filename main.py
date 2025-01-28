@@ -16,7 +16,8 @@ while keep:
         procss.add_conta(lista_contas, list_clientes)
     
     for i in range(len(list_clientes)):
-        procss.print_data(list_clientes[i].dados)
-    
+        procss.print_data(list_clientes[i])
+        print("\n")
     for i in range(len(lista_contas)):
-        procss.print_data(lista_contas[i].dados)
+        procss.print_data(lista_contas[i])
+        

@@ -1,5 +1,6 @@
 from time import *
 import os
+import sys
 
 class bank_actions:
     __LMT_S_OP = 500
@@ -118,7 +119,9 @@ class process:
         if answer == 'sim':
             cliente = client()
             lista_clientes.append(cliente)
-            print("Cliente adicionado com sucesso!")
+            print("Cliente adicionado com sucesso!\n")
+            sleep(1.)
+            self.verify_data(cliente)
         return
 
     def add_conta(self, lista_contas, lista_clientes):
@@ -169,3 +172,63 @@ class process:
                 if i == 1:
                     print("Data de nascimento:", objt.dados[self.get_key(objt, i)])
             return
+
+    def verify_data(self, objt):
+        #Função responsável por verificar se os dados inseridos são válidos
+        #Se estiverem corretos ela apenas volta a tela inicial, caso o contrario, chama uma função parar corrigir os dados incorretos
+        os.system('cls')
+        negative = ['não', 'nao', 'n', 'nn', 'no', 'nop']
+        positive = ['sim', 's', 'ss', 'yes', 'yep']
+        print("Verifique abaixo se os dados do cliente estão corretos.")
+        self.print_data(objt)
+        print("\nAlgun dado esta incorreto?")
+        to_correct = input()
+        if to_correct in negative:
+            print("Voltando ao menu pirncipal", end = '', flush=True)
+            for i in range(3):
+                print(".", end = '', flush=True)
+                sleep(0.5)
+            os.system('cls')
+            return
+        elif to_correct in positive:
+            keep_fixing = True
+            show_twice = False
+            while keep_fixing:
+                if show_twice:
+                    self.print_data(objt)
+                    print("\n")
+                print("Qual dado deseja corrigir? (Escreva-o assim como aparece acima)")
+                campo = input().title()
+                self.call_correction(objt, campo)
+                print("\nDado corrigio com sucesso!\n")
+                sleep(1.5)
+                os.system('cls')
+                self.print_data(objt)
+                print("\nDeseja corrigir mais algum dado?")
+                still_wrong = input()
+                if still_wrong in negative:
+                    keep_fixing = False
+                    print("Voltando ao menu pirncipal", end = '', flush=True)
+                    for i in range(3):
+                        print(".", end = '', flush=True)
+                        sleep(0.5)
+                    os.system('cls')
+                elif still_wrong in positive:
+                    keep_fixing = True
+                    show_twice = True
+                    os.system('cls')
+                else:
+                    print("Opção inválida")
+                    
+        return
+
+    def call_correction(self, objt, campo):
+        if campo == 'Nome':
+            objt.criar_nome()
+        elif campo == 'Data De Nascimento':
+            objt.criar_data_nasc()
+        elif campo == 'Cpf':
+            objt.criar_cpf()
+        elif campo == 'Endereço':
+            objt.criar_endereco()
+        return
