@@ -116,12 +116,13 @@ class search:
         #search for a bank account in the list of bank accounts by account number
         for i in range(len(lista_contas)):
             if lista_contas[i].dados['n_conta'] == n_conta:
-                return i
+                return lista_contas[i]
             else:
                 print("Conta não encontrada")
                 return
 
 class process:
+    #Classe responsável por funções de processsamento, aquisição e impressão de dados inerentes ao funcionamento do banco
     def add_cliente(self, lista_clientes):
         #add a new client to the list of clients
         answer = input("Deseja adicionar um novo cliente?\n")
