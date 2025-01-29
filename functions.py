@@ -1,7 +1,7 @@
 from time import *
 import os
 import time
-
+from TEXT import *
 
 class bank_actions:
     __LMT_S_OP = 500
@@ -105,6 +105,7 @@ class bank:
 class search:
     def search_client(self, cpf, lista_clientes):
         #search for a client in the list of clients by cpf
+        a=0
         for i in range(len(lista_clientes)):
             if lista_clientes[i].dados['CPF'] == cpf:
                 a = 1
@@ -116,13 +117,16 @@ class search:
     
     def search_n_conta(self, n_conta, lista_contas):
         #search for a bank account in the list of bank accounts by account number
+        a=0
         n_conta = int(n_conta)
         for i in range(len(lista_contas)):
             if lista_contas[i].dados['n_conta'] == n_conta:
                 return lista_contas[i]
-            else:
-                print("Conta não encontrada")
-                return
+                a = 1
+
+        if a != 1:
+            print("Conta não encontrada")
+            return
 
 class process:
     #Classe responsável por funções de processsamento, aquisição e impressão de dados inerentes ao funcionamento do banco
