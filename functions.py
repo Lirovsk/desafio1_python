@@ -154,6 +154,8 @@ class process:
         if cliente != None:
             cliente.dados['contas'].append(n_conta)
         print(text.BANK.ACCOUNT_ADDED)
+        sleep(0.8)
+        text.functions.going_back()
         return
         
     def get_key(self, dict, index, retunr_option = None):
