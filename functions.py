@@ -1,8 +1,9 @@
 from time import *
 import os
 import time
+from TEXT import *
 
-
+text = TEXTO()
 class bank_actions:
     __LMT_S_OP = 500
     __LMT_S_D = 3
@@ -10,35 +11,35 @@ class bank_actions:
     def saque(self, valor, conta):
         valor = float(valor)
         if valor > self.__LMT_S_OP:
-            print("Valor acima do limite permitido")
+            print(text.BANK.ABOVE_LIMIT)
             return
         elif valor <= 0:
-            print("Valor inválido")
+            print(text.BANK.INVALID_VALUE)
             return
         else:
             if conta.dados['saldo'] < valor:
-                print("Saldo insuficiente")
+                print(text.BANK.INSUFFICIENT_FUNDS)
                 return
             else:
                 conta.dados['saldo'] -= valor
                 conta.dados['extrato'].append([f"Saque no valor de R${valor:.2f}", time.ctime()])
                 conta.dados['lmt_d'] += 1
-                print("Saque realizado com sucesso!")
+                print(text.BANK.WITHDRAW_SUCCESS)
                 return
             
     def deposito(self, valor, conta):
         valor = float(valor)
         if valor <= 0:
-            print("Valor inválido")
+            print(text.BANK.INVALID_VALUE)
             return
         else:
             conta.dados['saldo'] += valor
             conta.dados['extrato'].append([f"Depósito no valor de R${valor:.2f}", time.ctime()])
-            print("Depósito realizado com sucesso!")
+            print(text.BANK.DEPOSIT_SUCCESS)
             return
     
     def extrato(self, conta):
-        print("Extrato bancário: ")
+        print(text.BANK.EXTRATO)
         for i in range(len(conta.dados['extrato'])):
             print(conta.dados['extrato'][i])
         print(f"Saldo atual: R${conta.dados['saldo']:.2f}")
@@ -60,22 +61,22 @@ class client:
         self.criar_endereco()
 
     def criar_nome(self):
-        nome = input("Digite o nome do cliente: ")
+        nome = input(text.CLIENT.ADD_NAME)
         self.dados['Nome'] = nome
         return
     
     def criar_data_nasc(self):
-        data_nasc = input("Digite a data de nascimento do cliente: ")
+        data_nasc = input(text.CLIENT.ADD_BIRTH)
         self.dados['data_nasc'] = data_nasc
         return
     
     def criar_cpf(self):
-        cpf = input("Digite o CPF do cliente: ")
+        cpf = input(text.CLIENT.ADD_CPF)
         self.dados['CPF'] = cpf
         return
     
     def criar_endereco(self):
-        endereco = input("Digite o endereço do cliente: ")
+        endereco = input(text.CLIENT.ADD_ADDRESS)
         self.dados['Endereço'] = endereco
         return
       
@@ -105,41 +106,45 @@ class bank:
 class search:
     def search_client(self, cpf, lista_clientes):
         #search for a client in the list of clients by cpf
+        a=0
         for i in range(len(lista_clientes)):
             if lista_clientes[i].dados['CPF'] == cpf:
                 a = 1
                 return lista_clientes[i]
                 
         if a != 1: 
-            print("Cliente não encontrado")
+            print(text.CLIENT_NOT_FOUND)
             return
     
     def search_n_conta(self, n_conta, lista_contas):
         #search for a bank account in the list of bank accounts by account number
+        a=0
         n_conta = int(n_conta)
         for i in range(len(lista_contas)):
             if lista_contas[i].dados['n_conta'] == n_conta:
                 return lista_contas[i]
-            else:
-                print("Conta não encontrada")
-                return
+                a = 1
+
+        if a != 1:
+            print(text.ACCOUNT_NOT_FOUND)
+            return
 
 class process:
     #Classe responsável por funções de processsamento, aquisição e impressão de dados inerentes ao funcionamento do banco
     def add_cliente(self, lista_clientes):
         #add a new client to the list of clients
-        answer = input("Deseja adicionar um novo cliente?\n")
+        answer = input(text.CLIENT.ADD_CLIENT)
         if answer == 'sim':
             cliente = client()
             lista_clientes.append(cliente)
-            print("Cliente adicionado com sucesso!\n")
+            print(text.CLIENT.CLIENT_ADDED)
             sleep(1.)
             self.verify_data(cliente)
         return
 
     def add_conta(self, lista_contas, lista_clientes):
         #create a bank account to a client and add it to the list of bank accounts
-        cpf = input("Digite o número do cpf do cliente que deseja adicionar a conta\n")
+        cpf = input(text.BANK.ENTER_CPF_FOR_ACCOUNT)
         conta = bank(cpf, lista_contas)
         lista_contas.append(conta)
         #adding the account number to the client's account list
@@ -148,7 +153,9 @@ class process:
         cliente = serc.search_client(cpf, lista_clientes)
         if cliente != None:
             cliente.dados['contas'].append(n_conta)
-        print("Conta adicionada com sucesso!")
+        print(text.BANK.ACCOUNT_ADDED)
+        sleep(0.8)
+        text.functions.going_back()
         return
         
     def get_key(self, dict, index, retunr_option = None):
@@ -192,16 +199,12 @@ class process:
         os.system('cls')
         negative = ['não', 'nao', 'n', 'nn', 'no', 'nop']
         positive = ['sim', 's', 'ss', 'yes', 'yep']
-        print("Verifique abaixo se os dados do cliente estão corretos.")
+        print(text.CLIENT.VERIFY_DATA)
         self.print_data(objt)
-        print("\nAlgun dado esta incorreto?")
-        to_correct = input()
+        print(text.CLIENT.INCORRECT_DATA_)
+        to_correct = input().lower()
         if to_correct in negative:
-            print("Voltando ao menu pirncipal", end = '', flush=True)
-            for i in range(3):
-                print(".", end = '', flush=True)
-                sleep(0.5)
-            os.system('cls')
+            text.functions.going_back()
             return
         elif to_correct in positive:
             keep_fixing = True
@@ -210,28 +213,24 @@ class process:
                 if show_twice:
                     self.print_data(objt)
                     print("\n")
-                print("Qual dado deseja corrigir? (Escreva-o assim como aparece acima)")
+                print(text.CLIENT.INFO_TO_CORRECT)
                 campo = input().title()
                 self.call_correction(objt, campo)
-                print("\nDado corrigio com sucesso!\n")
+                print(text.CLIENT.INFO_CORRECTED)
                 sleep(1.5)
                 os.system('cls')
                 self.print_data(objt)
-                print("\nDeseja corrigir mais algum dado?")
+                print(text.CLIENT.ANOTHER_TO_CORRECT)
                 still_wrong = input()
                 if still_wrong in negative:
                     keep_fixing = False
-                    print("Voltando ao menu pirncipal", end = '', flush=True)
-                    for i in range(3):
-                        print(".", end = '', flush=True)
-                        sleep(0.5)
-                    os.system('cls')
+                    text.functions.going_back()
                 elif still_wrong in positive:
                     keep_fixing = True
                     show_twice = True
                     os.system('cls')
                 else:
-                    print("Opção inválida")
+                    print(text.INVALID_OPTION)
                     
         return
 
