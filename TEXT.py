@@ -13,7 +13,7 @@ class TEXTO:
 |_______/  \_______/|__/  |__/ \_______/ \______/        \_______/ \______/       |________/|__/|__/      \_______/
                                                                                                                    """
     MENU = """
-Bom dia, o que o Senhor(a) deseja fazer no banco hoje?
+Bom dia, o que o Senhor(a) deseja fazer no banco hoje? (para sair digite 4)
 1. Adicionar cliente
 2. Criar conta
 3. Entrar no caixa eletrônico
@@ -29,7 +29,8 @@ Bom dia, o que o Senhor(a) deseja fazer no banco hoje?
     
     class BANK:
         MENU = """
-O que deseja fazer Hoje?
+CAIXA ELETRÔNICO        
+O que deseja fazer Hoje? (para sair digite 4)
 1. Depositar
 2. Sacar
 3. Ver extrato
@@ -45,14 +46,14 @@ O que deseja fazer Hoje?
         EXTRATO = """Extrato bancário: """
         ENTER_CPF_FOR_ACCOUNT = """Digite o número do cpf do cliente que deseja adicionar a conta\n"""
         ACCOUNT_ADDED = """Conta adicionada com sucesso!"""
+        PRESS_TO_CLEAR = """Pressione enter para apagar essa tela e voltar ao menu do banco"""
 
     class CLIENT:
         ADD_NAME = """Digite o nome do cliente: """
         ADD_BIRTH = """Digite a data de nascimento do cliente: """
         ADD_CPF = """Digite o CPF do cliente: """
         ADD_ADDRESS = """Digite o endereço do cliente: """
-        ADD_CLIENT = """Deseja adicionar um novo cliente?
-        """
+        ADD_CLIENT = """Deseja adicionar um novo cliente?\n"""
         CLIENT_ADDED = """Cliente adicionado com sucesso!
         """
         VERIFY_DATA = """Verifique abaixo se os dados do cliente estão corretos."""
@@ -67,5 +68,13 @@ O que deseja fazer Hoje?
             for i in range(3):
                 print('.', end='', flush=True)
                 time.sleep(0.5)
+            os.system('cls')
+            return
+        
+        def closing_app():
+            print("Fechando aplicativo", end='', flush=True)
+            for i in range(3):
+                print('.', end='', flush=True)
+                time.sleep(0.8)
             os.system('cls')
             return
