@@ -1,3 +1,6 @@
+import os
+import time
+
 class TEXTO:
     WELCOME = """ 
 /$$$$$$$                                                      /$$                 /$$       /$$                   
@@ -21,6 +24,9 @@ Bom dia, o que o Senhor(a) deseja fazer no banco hoje?
     ENTER_ACCOUNT = """Digite o número da conta"""
     CLIENT_NOT_FOUND = """Cliente não encontrado"""
     ACCOUNT_NOT_FOUND = """Conta não encontrada"""
+    INVALID_OPTION = """Opção inválida"""
+    GOING_BACK = "Voltando ao menu principal"
+    
     class BANK:
         MENU = """
 O que deseja fazer Hoje?
@@ -37,9 +43,29 @@ O que deseja fazer Hoje?
         WITHDRAW_SUCCESS = """Saque realizado com sucesso!"""
         DEPOSIT_SUCCESS = """Depósito realizado com sucesso!"""
         EXTRATO = """Extrato bancário: """
-    
+        ENTER_CPF_FOR_ACCOUNT = """Digite o número do cpf do cliente que deseja adicionar a conta\n"""
+        ACCOUNT_ADDED = """Conta adicionada com sucesso!"""
+
     class CLIENT:
         ADD_NAME = """Digite o nome do cliente: """
         ADD_BIRTH = """Digite a data de nascimento do cliente: """
         ADD_CPF = """Digite o CPF do cliente: """
         ADD_ADDRESS = """Digite o endereço do cliente: """
+        ADD_CLIENT = """Deseja adicionar um novo cliente?
+        """
+        CLIENT_ADDED = """Cliente adicionado com sucesso!
+        """
+        VERIFY_DATA = """Verifique abaixo se os dados do cliente estão corretos."""
+        INCORRECT_DATA_ = """\nAlgun dado esta incorreto?"""
+        INFO_TO_CORRECT = """Qual dado deseja corrigir? (Escreva-o assim como aparece acima)"""
+        INFO_CORRECTED = """\nDado corrigido com sucesso!\n"""
+        ANOTHER_TO_CORRECT = """\nDeseja corrigir mais algum dado?"""
+    
+    class functions:
+        def going_back():
+            print(TEXTO.GOING_BACK, end='', flush=True)
+            for i in range(3):
+                print('.', end='', flush=True)
+                time.sleep(0.5)
+            os.system('cls')
+            return
