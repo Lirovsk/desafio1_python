@@ -8,6 +8,7 @@ class bank_actions:
     __LMT_S_D = 3
     
     def saque(self, valor, conta):
+        valor = float(valor)
         if valor > self.__LMT_S_OP:
             print("Valor acima do limite permitido")
             return
@@ -20,18 +21,19 @@ class bank_actions:
                 return
             else:
                 conta.dados['saldo'] -= valor
-                conta.dados['extrato'].append(f"Saque no valor de R${valor:.2f}", time.ctime())
+                conta.dados['extrato'].append([f"Saque no valor de R${valor:.2f}", time.ctime()])
                 conta.dados['lmt_d'] += 1
                 print("Saque realizado com sucesso!")
                 return
             
     def deposito(self, valor, conta):
+        valor = float(valor)
         if valor <= 0:
             print("Valor inválido")
             return
         else:
             conta.dados['saldo'] += valor
-            conta.dados['extrato'].append(f"Depósito no valor de R${valor:.2f}", time.ctime())
+            conta.dados['extrato'].append([f"Depósito no valor de R${valor:.2f}", time.ctime()])
             print("Depósito realizado com sucesso!")
             return
     
@@ -104,7 +106,7 @@ class search:
     def search_client(self, cpf, lista_clientes):
         #search for a client in the list of clients by cpf
         for i in range(len(lista_clientes)):
-            if lista_clientes[i].dados['cpf'] == cpf:
+            if lista_clientes[i].dados['CPF'] == cpf:
                 a = 1
                 return lista_clientes[i]
                 
@@ -114,6 +116,7 @@ class search:
     
     def search_n_conta(self, n_conta, lista_contas):
         #search for a bank account in the list of bank accounts by account number
+        n_conta = int(n_conta)
         for i in range(len(lista_contas)):
             if lista_contas[i].dados['n_conta'] == n_conta:
                 return lista_contas[i]
@@ -136,7 +139,7 @@ class process:
 
     def add_conta(self, lista_contas, lista_clientes):
         #create a bank account to a client and add it to the list of bank accounts
-        cpf = input("Digite o número do cpf do cliente que deseja adicionar a conta")
+        cpf = input("Digite o número do cpf do cliente que deseja adicionar a conta\n")
         conta = bank(cpf, lista_contas)
         lista_contas.append(conta)
         #adding the account number to the client's account list
