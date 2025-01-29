@@ -1,3 +1,4 @@
+
 # Desafio 1 - Python
 
 Este repositório contém a solução para o Desafio 1 em Python.
@@ -15,6 +16,10 @@ Este repositório contém a solução para o Desafio 1 em Python.
 ```sh
 python main.py
 ```
+
+## Implementações Futuras:
+
+Próxima implementação deverá ser o suporte para a língua inglesa nos textos do código.
 
 ## Contribuições
 
