@@ -3,9 +3,16 @@ from os import *
 from functions import *
 from TEXT import *
 
+
+option = input("""
+Choose your language:
+    1. English
+    2. Português
+    Type only the number: """)
+
 procss = process()
-text = TEXTO()
-bank_ = bank_actions()
+text = TEXTO(option)
+bank_ = bank_actions(option)
 src = search()
 lista_contas = []
 list_clientes = []

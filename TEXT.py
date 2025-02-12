@@ -41,13 +41,19 @@ class TEXTO:
         INFO_CORRECTED = ""
         ANOTHER_TO_CORRECT = ""
 
-    def __init__(self):
-        self.option = input("""
+    def __init__(self, option=None):
+        if option == None:
+            self.option = input("""
 Choose your language:
     1. English
     2. Português
     Type only the number: """)
-        self.get_language(self.option)
+            self.get_language(self.option)
+            return self.option
+        else:
+            self.get_language(option)
+        
+    
     
     def get_language(self, variable):
         if variable == '1':
