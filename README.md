@@ -17,7 +17,7 @@ Este repositório contém a solução para o Desafio 1 em Python.
 python main.py
 ```
 
-## Implementações Futuras:
+## Implementações Futuras
 
 Próxima implementação deverá ser o suporte para a língua inglesa nos textos do código.
 

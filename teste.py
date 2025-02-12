@@ -2,5 +2,5 @@ from TEXT import *
 
 text = TEXTO()
 
-print(text.MENU)
+print(text.WELCOME)
 #print(text.BANK.DEPOSIT)
