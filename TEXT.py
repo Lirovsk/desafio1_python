@@ -42,6 +42,7 @@ class TEXTO:
         ANOTHER_TO_CORRECT = ""
 
     def __init__(self, option=None):
+        self.functions.initializing()
         if option == None:
             self.option = input("""
 Choose your language:
@@ -49,7 +50,8 @@ Choose your language:
     2. Português
     Type only the number: """)
             self.get_language(self.option)
-            return self.option
+            self.functions.loading()
+            return
         else:
             self.get_language(option)
         
@@ -194,4 +196,21 @@ O que deseja fazer Hoje? (para sair digite 4)
             os.system('cls')
             return
 
-
+        @staticmethod
+        def loading():
+            os.system('cls')
+            print('Loading', end='', flush=True)
+            for i in range(3):
+                print('.', end='', flush=True)
+                time.sleep(0.8)
+            os.system('cls')
+            return
+        
+        @staticmethod
+        def initializing():
+            print('Initializing the system', end='', flush=True)
+            for i in range(3):
+                print('.', end='', flush=True)
+                time.sleep(0.8)
+            os.system('cls')
+            return

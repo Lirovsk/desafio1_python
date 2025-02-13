@@ -1,18 +1,14 @@
+from functions import *
 from time import *
 from os import *
-from functions import *
-from TEXT import *
+import TEXT 
+text = TEXT.TEXTO()
 
 
-option = input("""
-Choose your language:
-    1. English
-    2. Português
-    Type only the number: """)
-
+#find a way to init all this classes usin the same instance of the class texto
+#para isso vou importar a instâcia criada aqui para os outros aquivos 
+bank_ = bank_actions()
 procss = process()
-text = TEXTO(option)
-bank_ = bank_actions(option)
 src = search()
 lista_contas = []
 list_clientes = []
