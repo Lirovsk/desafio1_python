@@ -59,21 +59,44 @@ class def_Conta(ABC):
 
 
 class conta_corrente(def_Conta):
-    wthdr_set_act = 3
-    
+    __wthdr_set_act = 3
+    __wthdr_lmt = 500
     def __init__(self, count, saldo, client, agency):
         super().__init__(count, saldo, client, agency)
-        self.wthdr_lmt = 500.0
-        self.wthdr_act = 0
+        self._wthdr_act = 0
     
     def new_account(self, client, number):
         pass
 
     def deposit(self, value):
-        pass
+        if value > 0:
+            self._saldo += value
+            dpst = deposit(value)
+            dpst.register(self)
+            return True
+        else:
+            print("A operação falhou")
+            return False
 
     def withdraw(self, value):
-        pass
+        if self._wthdr_act > self.__wthdr_set_act:
+            print(text.BANK.WITHDRAW_LIMIT_EXCEEDED)
+            return False
+        if value > self.__wthdr_lmt:
+            print(text.BANK.ABOVE_LIMIT)
+            return False
+        if value > self._saldo:
+            print(text.BANK.INSUFFICIENT_FUNDS)
+            return False
+        elif value > 0:
+            self._saldo -= value
+            self._wthdr_act += 1
+            wthdr = withdraw(value)
+            wthdr.register(self)
+            return True
+        else:
+            print("A operação falhou")
+            return False
 
 
 class History():

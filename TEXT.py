@@ -42,6 +42,7 @@ O que deseja fazer Hoje? (para sair digite 4)
         INVALID_VALUE = """Valor inválido"""
         INSUFFICIENT_FUNDS = """Saldo insuficiente"""
         WITHDRAW_SUCCESS = """Saque realizado com sucesso!"""
+        WITHDRAW_LIMIT_EXCEEDED = """Limite de saques excedido!"""
         DEPOSIT_SUCCESS = """Depósito realizado com sucesso!"""
         EXTRATO = """Extrato bancário: """
         ENTER_CPF_FOR_ACCOUNT = """Digite o número do cpf do cliente que deseja adicionar a conta\n"""
