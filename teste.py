@@ -1,6 +1,6 @@
 from time import *
 from os import *
-from functions import *
+from services import *
 from TEXT import *
 
 procss = process()
