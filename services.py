@@ -183,3 +183,20 @@ class general_services():
                     return count_list[i]+1
         else:
             return 1
+        
+def data_aquis():
+    #Get the data from the user
+    data_list = []
+    print(text.CLIENT.ADD_ADDRESS)
+    address = input()
+    data_list.append(address)
+    print(text.CLIENT.ADD_CPF)
+    cpf = input()
+    data_list.append(cpf)
+    print(text.CLIENT.ADD_NAME)
+    name = input()
+    data_list.append(name)
+    print(text.CLIENT.ADD_BIRTH)
+    birth = input()
+    data_list.append(birth)
+    return data_list
