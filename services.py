@@ -65,10 +65,13 @@ class conta_corrente(def_Conta):
         super().__init__(count, saldo, client, agency)
         self._wthdr_act = 0
     
-    def new_account(self, client, number):
-        pass
+    @classmethod
+    def new_account(self, client, count_list):
+        count = general_services.new_count_number(count_list)
+        return conta_corrente(count, 0, client, 1)
 
     def deposit(self, value):
+        #need to be completed
         if value > 0:
             self._saldo += value
             dpst = deposit(value)
@@ -79,6 +82,7 @@ class conta_corrente(def_Conta):
             return False
 
     def withdraw(self, value):
+        #need to be completed
         if self._wthdr_act > self.__wthdr_set_act:
             print(text.BANK.WITHDRAW_LIMIT_EXCEEDED)
             return False
@@ -108,15 +112,17 @@ class History():
         _datetime = datetime.now()
         _transaction_name = transaction.__class__.__name__
         _transaction_time = _datetime.strftime('%d/%m/%Y--%H:%M:%S')
-        _transaction.extend([_transaction_name, _transaction_time])
+        _transaction_value = transaction.value
+        _transaction.extend([_transaction_name, _transaction_value, _transaction_time])
         self.transactions.append(_transaction)
-        del _transaction, _datetime, _transaction_name, _transaction_time
+        del _transaction, _datetime, _transaction_name, _transaction_time, _transaction_value
 
     def show_transactions(self):
         for i in range(len(self.transactions)):
             _text = f"""--------------------------------
                         Operação: {self.transactions[i][0]}
-                        Data: {self.transactions[i][1]}
+                        Valoe da operação: {self.transactions[i][1]}
+                        Data: {self.transactions[i][2]}
                         """
             print(textwrap.dedent(_text))
             del _text
@@ -142,7 +148,7 @@ class withdraw(transaction):
         return self._value
     
     def register(self, count):
-        pass
+        History.register_transaction(self)
 
 
 class deposit(transaction):
@@ -154,4 +160,17 @@ class deposit(transaction):
         return self._value
     
     def register(self, count):
-        pass
+        History.register_transaction(self)
+
+
+class general_services():
+    def new_count_number(self, count_list):
+        #Define a new number for a new account
+        if count_list != []:
+            for i in range(len(count_list)):
+                if i+1 != count_list[i]:
+                    return i+1
+                if i == len(count_list)-1:
+                    return count_list[i]+1
+        else:
+            return 1
