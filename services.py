@@ -74,8 +74,6 @@ class conta_corrente(def_Conta):
         #need to be completed
         if value > 0:
             self._saldo += value
-            dpst = deposit(value)
-            dpst.register(self)
             return True
         else:
             print("A operação falhou")
@@ -95,13 +93,21 @@ class conta_corrente(def_Conta):
         elif value > 0:
             self._saldo -= value
             self._wthdr_act += 1
-            wthdr = withdraw(value)
-            wthdr.register(self)
             return True
         else:
             print("A operação falhou")
             return False
 
+    def do_transaction(self, transaction, value):
+        if transaction == 'deposit':
+            if self.deposit(value):
+                deposit.register(self)
+        elif transaction == 'withdraw':
+            if self.withdraw(value):
+                withdraw.register(self)
+        else:
+            print("Operação inválida")
+            return False
 
 class History():
     def __init__(self):
