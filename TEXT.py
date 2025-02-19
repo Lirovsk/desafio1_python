@@ -21,6 +21,7 @@ Bom dia, o que o Senhor(a) deseja fazer no banco hoje? (para sair digite 4)
 """
     ENTER_ATM = """Deseja entrar no caixa eletrônico?"""
     ENTER_ADD_CLIENT = """Deseja mesmo adicionar um cliente?"""
+    ENTER_ADD_ACCOUNT = """Deseja mesmo adicionar uma conta?"""
     ENTER_CPF = """Digite o número do CPF"""
     ENTER_ACCOUNT = """Digite o número da conta"""
     CLIENT_NOT_FOUND = """Cliente não encontrado"""
