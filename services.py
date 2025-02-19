@@ -200,3 +200,8 @@ def data_aquis():
     birth = input()
     data_list.append(birth)
     return data_list
+
+def adding_client():
+    #Add a new client to the bank
+    data_list = data_aquis()
+    return pessoa_fisica(data_list[0], data_list[1], data_list[2], data_list[3])
