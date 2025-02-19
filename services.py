@@ -36,11 +36,11 @@ class pessoa_fisica(def_Client):
 
 class def_Conta(ABC):
     @abstractmethod
-    def __init__(self, count, saldo, client, agency):
+    def __init__(self, count, saldo, client):
         self._count = count
         self._saldo = saldo
         self._client = client
-        self._agency = agency
+        self._agency = 1
         self._transactions = History()
         
     @abstractmethod
@@ -60,14 +60,14 @@ class def_Conta(ABC):
 class conta_corrente(def_Conta):
     __wthdr_set_act = 3
     __wthdr_lmt = 500
-    def __init__(self, count, saldo, client, agency):
-        super().__init__(count, saldo, client, agency)
+    def __init__(self, count, saldo, client):
+        super().__init__(count, saldo, client)
         self._wthdr_act = 0
     
     @classmethod
     def new_account(self, client, count_list):
-        count = general_services.new_count_number(count_list)
-        return conta_corrente(count, 0, client, 1)
+        count = new_count_number(count_list)
+        return conta_corrente(count, 0, client)
 
     def deposit(self, value):
         #need to be completed
@@ -172,17 +172,17 @@ class deposit(transaction):
         History.register_transaction(self)
 
 
-class general_services():
-    def new_count_number(self, count_list):
+
+def new_count_number(count_list):
         #Define a new number for a new account
-        if count_list != []:
-            for i in range(len(count_list)):
-                if i+1 != count_list[i]:
+    if count_list != []:
+        for i in range(len(count_list)):
+            if i+1 != count_list[i]:
                     return i+1
-                if i == len(count_list)-1:
-                    return count_list[i]+1
-        else:
-            return 1
+            if i == len(count_list)-1:
+                return count_list[i]+1
+    else:
+        return 1
         
 def data_aquis():
     #Get the data from the user
@@ -205,3 +205,5 @@ def adding_client():
     #Add a new client to the bank
     data_list = data_aquis()
     return pessoa_fisica(data_list[0], data_list[1], data_list[2], data_list[3])
+
+#Add new fucntions to search for a client and a account
