@@ -2,7 +2,6 @@ from abc import ABC, abstractmethod
 from time import *
 from datetime import datetime
 from TEXT import *
-import os
 import textwrap
 
 text = TEXTO()
@@ -108,6 +107,10 @@ class conta_corrente(def_Conta):
         else:
             print("Operação inválida")
             return False
+        
+    def show_transactions(self):
+        self._transactions.show_transactions()
+
 
 class History():
     def __init__(self):
