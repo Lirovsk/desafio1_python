@@ -20,12 +20,15 @@ Bom dia, o que o Senhor(a) deseja fazer no banco hoje? (para sair digite 4)
 4. Sair
 """
     ENTER_ATM = """Deseja entrar no caixa eletrônico?"""
+    ENTER_ADD_CLIENT = """Deseja mesmo adicionar um cliente?"""
+    ENTER_ADD_ACCOUNT = """Deseja mesmo adicionar uma conta?"""
     ENTER_CPF = """Digite o número do CPF"""
     ENTER_ACCOUNT = """Digite o número da conta"""
     CLIENT_NOT_FOUND = """Cliente não encontrado"""
     ACCOUNT_NOT_FOUND = """Conta não encontrada"""
     INVALID_OPTION = """Opção inválida"""
     GOING_BACK = "Voltando ao menu principal"
+    ENTER_CPF_FOR_ACCOUNT = """Digite o número do cpf do cliente que deseja adicionar a conta\n"""
     
     class BANK:
         MENU = """
@@ -42,9 +45,11 @@ O que deseja fazer Hoje? (para sair digite 4)
         INVALID_VALUE = """Valor inválido"""
         INSUFFICIENT_FUNDS = """Saldo insuficiente"""
         WITHDRAW_SUCCESS = """Saque realizado com sucesso!"""
+        WITHDRAW_LIMIT_EXCEEDED = """Limite de saques excedido!"""
         DEPOSIT_SUCCESS = """Depósito realizado com sucesso!"""
         EXTRATO = """Extrato bancário: """
-        ENTER_CPF_FOR_ACCOUNT = """Digite o número do cpf do cliente que deseja adicionar a conta\n"""
+        CLIENT_CPF = """Digite o CPF do cliente"""
+        WHICH_ACCOUNT = """Qual conta deseja acessar?"""
         ACCOUNT_ADDED = """Conta adicionada com sucesso!"""
         PRESS_TO_CLEAR = """Pressione enter para apagar essa tela e voltar ao menu do banco"""
 
@@ -62,19 +67,19 @@ O que deseja fazer Hoje? (para sair digite 4)
         INFO_CORRECTED = """\nDado corrigido com sucesso!\n"""
         ANOTHER_TO_CORRECT = """\nDeseja corrigir mais algum dado?"""
     
-    class functions:
-        def going_back():
-            print(TEXTO.GOING_BACK, end='', flush=True)
-            for i in range(3):
-                print('.', end='', flush=True)
-                time.sleep(0.5)
-            os.system('cls')
-            return
+    
+def going_back():
+    print(TEXTO.GOING_BACK, end='', flush=True)
+    for i in range(3):
+        print('.', end='', flush=True)
+        time.sleep(0.5)
+    os.system('cls')
+    return
         
-        def closing_app():
-            print("Fechando aplicativo", end='', flush=True)
-            for i in range(3):
-                print('.', end='', flush=True)
-                time.sleep(0.8)
-            os.system('cls')
-            return
+def closing_app():
+    print("Fechando aplicativo", end='', flush=True)
+    for i in range(3):
+        print('.', end='', flush=True)
+        time.sleep(0.8)
+    os.system('cls')
+    return
