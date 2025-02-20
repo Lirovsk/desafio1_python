@@ -28,6 +28,7 @@ Bom dia, o que o Senhor(a) deseja fazer no banco hoje? (para sair digite 4)
     ACCOUNT_NOT_FOUND = """Conta não encontrada"""
     INVALID_OPTION = """Opção inválida"""
     GOING_BACK = "Voltando ao menu principal"
+    ENTER_CPF_FOR_ACCOUNT = """Digite o número do cpf do cliente que deseja adicionar a conta\n"""
     
     class BANK:
         MENU = """
@@ -47,7 +48,8 @@ O que deseja fazer Hoje? (para sair digite 4)
         WITHDRAW_LIMIT_EXCEEDED = """Limite de saques excedido!"""
         DEPOSIT_SUCCESS = """Depósito realizado com sucesso!"""
         EXTRATO = """Extrato bancário: """
-        ENTER_CPF_FOR_ACCOUNT = """Digite o número do cpf do cliente que deseja adicionar a conta\n"""
+        CLIENT_CPF = """Digite o CPF do cliente"""
+        WHICH_ACCOUNT = """Qual conta deseja acessar?"""
         ACCOUNT_ADDED = """Conta adicionada com sucesso!"""
         PRESS_TO_CLEAR = """Pressione enter para apagar essa tela e voltar ao menu do banco"""
 
