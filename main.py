@@ -7,7 +7,20 @@ lista_clientes = []
 lista_contas = []
 
 def bank_loop():
-    pass
+    #define this function
+    while True:
+        print(text.BANK.MENU)
+        option = input()
+        if option == "1":
+            print(text.BANK.DEPOSIT)
+        elif option == "2":
+            print(text.BANK.WITHDRAW)
+        elif option == "3":
+            print(text.BANK.EXTRATO)
+        elif option == "4":
+            text.functions.going_back()
+            break
+
 
 def main():
     while True:
@@ -19,28 +32,29 @@ def main():
             option = input()
             if option in ["s", "S", "sim", "Sim", "SIM"]:
                 lista_clientes.append(adding_client())
-                text.functions.going_back()
+                going_back()
             else:
-                text.functions.going_back()
+                going_back()
             pass
         elif option == "2":
             print(text.ENTER_ADD_ACCOUNT)
             option = input()
             if option in ["s", "S", "sim", "Sim", "SIM"]:
+                
                 cliente = conta_corrente.new_account(cliente, lista_contas)
-                pass
+                
             else:
-                text.functions.going_back()
+                going_back()
         elif option == "3":
             print(text.ENTER_ATM)
             option = input()
             if option in ["s", "S", "sim", "Sim", "SIM"]:
                 bank_loop()
-                text.functions.going_back()
+                going_back()
             else:
-                text.functions.going_back()
+                going_back()
         elif option == "4":
-            text.functions.closing_app()
+            closing_app()
             break
         else:
             print(text.INVALID_OPTION)
