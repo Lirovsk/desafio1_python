@@ -212,3 +212,9 @@ def search_client(cpf, client_list):
         if client_list[i]._cpf == cpf:
             return client_list[i]
     return False 
+
+def search_count(number, account_list):
+    for i in range(len(account_list)):
+        if account_list[i]._count == number:
+            return account_list[i]
+    pass
