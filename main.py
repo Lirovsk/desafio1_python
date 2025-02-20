@@ -18,7 +18,7 @@ def bank_loop():
         elif option == "3":
             print(text.BANK.EXTRATO)
         elif option == "4":
-            text.functions.going_back()
+            going_back()
             break
 
 
