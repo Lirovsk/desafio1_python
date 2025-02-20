@@ -71,7 +71,7 @@ def going_back():
     for i in range(3):
         print('.', end='', flush=True)
         time.sleep(0.5)
-        os.system('cls')
+    os.system('cls')
     return
         
 def closing_app():
@@ -79,5 +79,5 @@ def closing_app():
     for i in range(3):
         print('.', end='', flush=True)
         time.sleep(0.8)
-        os.system('cls')
+    os.system('cls')
     return
