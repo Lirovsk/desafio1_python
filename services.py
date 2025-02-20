@@ -207,3 +207,8 @@ def adding_client():
     return pessoa_fisica(data_list[0], data_list[1], data_list[2], data_list[3])
 
 #Add new fucntions to search for a client and a account
+def search_client(cpf, client_list):
+    for i in range(len(client_list)):
+        if client_list[i]._cpf == cpf:
+            return client_list[i]
+    return False 
