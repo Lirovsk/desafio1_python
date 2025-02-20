@@ -40,22 +40,29 @@ def main():
             print(text.ENTER_ADD_ACCOUNT)
             option = input()
             if option in ["s", "S", "sim", "Sim", "SIM"]:
-                
-                cliente = conta_corrente.new_account(cliente, lista_contas)
-                
+                print(text.BANK.ENTER_CPF_FOR_ACCOUNT)
+                cpf = input()
+                cliente = search_client(cpf, lista_clientes)
+                new_account = conta_corrente.new_account(cliente, lista_contas)
+                lista_contas.append(new_account)
+                print(text.BANK.ACCOUNT_ADDED)
+
             else:
                 going_back()
+
         elif option == "3":
             print(text.ENTER_ATM)
             option = input()
             if option in ["s", "S", "sim", "Sim", "SIM"]:
                 bank_loop()
-                going_back()
+
             else:
                 going_back()
+
         elif option == "4":
             closing_app()
             break
+
         else:
             print(text.INVALID_OPTION)
             os.system('cls')
