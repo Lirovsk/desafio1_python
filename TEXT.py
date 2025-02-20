@@ -65,19 +65,19 @@ O que deseja fazer Hoje? (para sair digite 4)
         INFO_CORRECTED = """\nDado corrigido com sucesso!\n"""
         ANOTHER_TO_CORRECT = """\nDeseja corrigir mais algum dado?"""
     
-    class functions:
-        def going_back():
-            print(TEXTO.GOING_BACK, end='', flush=True)
-            for i in range(3):
-                print('.', end='', flush=True)
-                time.sleep(0.5)
-            os.system('cls')
-            return
+    
+def going_back():
+    print(TEXTO.GOING_BACK, end='', flush=True)
+    for i in range(3):
+        print('.', end='', flush=True)
+        time.sleep(0.5)
+        os.system('cls')
+    return
         
-        def closing_app():
-            print("Fechando aplicativo", end='', flush=True)
-            for i in range(3):
-                print('.', end='', flush=True)
-                time.sleep(0.8)
-            os.system('cls')
-            return
+def closing_app():
+    print("Fechando aplicativo", end='', flush=True)
+    for i in range(3):
+        print('.', end='', flush=True)
+        time.sleep(0.8)
+        os.system('cls')
+    return
