@@ -8,6 +8,14 @@ lista_contas = []
 
 def bank_loop():
     #define this function
+    print(text.BANK.CLIENT_CPF)
+    cpf = input()
+    time_client = search_client(cpf, lista_clientes)
+    print(text.BANK.WHICH_ACCOUNT)
+    print(time_client._count[0]._count)
+    account = input()
+    conta = search_count(account, time_client._count)
+
     while True:
         print(text.BANK.MENU)
         option = input()
@@ -40,12 +48,14 @@ def main():
             print(text.ENTER_ADD_ACCOUNT)
             option = input()
             if option in ["s", "S", "sim", "Sim", "SIM"]:
-                print(text.BANK.ENTER_CPF_FOR_ACCOUNT)
+                print(text.ENTER_CPF_FOR_ACCOUNT)
                 cpf = input()
                 cliente = search_client(cpf, lista_clientes)
                 new_account = conta_corrente.new_account(cliente, lista_contas)
-                lista_contas.append(new_account)
+                lista_contas.append(new_account._count)
+                cliente._count.append(new_account)
                 print(text.BANK.ACCOUNT_ADDED)
+                going_back()
 
             else:
                 going_back()
