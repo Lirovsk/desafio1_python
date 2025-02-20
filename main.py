@@ -15,7 +15,6 @@ def bank_loop():
     print(time_client._count[0]._count)
     account = input()
     conta = search_count(account, time_client._count)
-
     while True:
         print(text.BANK.MENU)
         option = input()

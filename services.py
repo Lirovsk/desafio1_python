@@ -28,7 +28,8 @@ class pessoa_fisica(def_Client):
         self._birth = birth
     
     def make_transaction(self, count, transaction):
-        transaction.register_transaction(count)
+        if count.transaction:
+            transaction.register_transaction(count)
     
     def add_count(self, count):
         self._count.append(count)
@@ -217,4 +218,4 @@ def search_count(number, account_list):
     for i in range(len(account_list)):
         if account_list[i]._count == number:
             return account_list[i]
-    pass
+    return False  
